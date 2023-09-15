@@ -4,10 +4,13 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ListView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 
 class MainActivity : AppCompatActivity() {
@@ -15,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     private  lateinit var countText : TextView
     private  lateinit var  context : Context
     private lateinit var count: TextView
-    private  lateinit var  listview1 :ListView
+    private  lateinit var  listview1 : ListView
     private  lateinit var dbHandler:DbHandler
     private  lateinit var  todosDisplayMain:List<ToDo>
     // first execute onCreate function
