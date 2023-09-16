@@ -51,8 +51,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+
         android:layout_marginTop="100dp"
         android:backgroundTint="@color/button"
+
+  
+
         android:text="Save" />
 
 </LinearLayout>
