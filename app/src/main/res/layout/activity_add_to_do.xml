@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".AddToDo">
 
     <TextView
@@ -13,7 +14,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="108dp"
-        android:text="Add ToDo"
+        android:text="New Task"
+        android:textColor="@color/white"
         android:textSize="30sp" />
 
     <EditText
@@ -25,6 +27,9 @@
         android:layout_marginEnd="32dp"
         android:ems="10"
         android:hint="Title"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/hint"
+        android:textColorHint="@color/hint"
         android:inputType="textPersonName" />
 
     <EditText
@@ -36,6 +41,9 @@
         android:layout_marginEnd="32dp"
         android:ems="10"
         android:hint="Description"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/hint"
+        android:textColorHint="@color/hint"
         android:inputType="textPersonName" />
 
     <Button
@@ -44,6 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="100dp"
+        android:backgroundTint="@color/button"
         android:text="Save" />
 
 </LinearLayout>

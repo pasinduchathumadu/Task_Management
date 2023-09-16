@@ -10,6 +10,7 @@
     android:paddingLeft="8dp"
     android:paddingTop="8dp"
     android:paddingEnd="8dp"
+    android:background="@color/background"
     android:paddingRight="8dp">
 
         <TextView
@@ -19,7 +20,8 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
             android:text="TextView"
-            android:textColor="@color/black"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="20dp" />
 
@@ -35,11 +37,12 @@
     <TextView
         android:id="@+id/description"
         android:textSize="20dp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
+        android:textColorHint="@color/white"
         android:layout_marginBottom="16dp"
         android:text="TextView" />
 
