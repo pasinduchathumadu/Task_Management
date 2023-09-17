@@ -10,10 +10,11 @@
 
     <ImageView
         android:id="@+id/imageView10"
-        android:layout_width="416dp"
-        android:layout_height="629dp"
+        android:layout_width="412dp"
+        android:layout_height="605dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
@@ -37,9 +38,10 @@
         android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/editToDoTextTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView10"
-        app:layout_constraintVertical_bias="0.376"
-        tools:layout_editor_absoluteX="136dp" />
+        app:layout_constraintVertical_bias="0.376" />
 
     <EditText
         android:id="@+id/editToDoTextTitle"
@@ -55,9 +57,10 @@
         android:textColor="@color/white"
         android:textColorHint="@color/hint"
         app:layout_constraintBottom_toTopOf="@+id/editToDoTextDescription"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView10"
-        app:layout_constraintVertical_bias="0.735"
-        tools:layout_editor_absoluteX="37dp" />
+        app:layout_constraintVertical_bias="0.735" />
 
     <EditText
         android:id="@+id/editToDoTextDescription"
@@ -66,17 +69,17 @@
         android:layout_above="@+id/buttonEdit"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="2dp"
-        android:layout_marginEnd="-2dp"
-        android:layout_marginBottom="15dp"
         android:backgroundTint="@color/hint"
         android:ems="10"
         android:hint="Description"
         android:inputType="textPersonName"
         android:textColor="@color/white"
         android:textColorHint="@color/hint"
-        tools:layout_editor_absoluteX="36dp"
-        tools:layout_editor_absoluteY="402dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageView10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView7"
+        app:layout_constraintVertical_bias="0.538" />
 
     <Button
         android:id="@+id/buttonEdit"
@@ -89,9 +92,10 @@
         android:backgroundTint="@color/button"
         android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editToDoTextDescription"
-        app:layout_constraintVertical_bias="0.342"
-        tools:layout_editor_absoluteX="173dp" />
+        app:layout_constraintVertical_bias="0.256" />
 
     <ImageView
         android:id="@+id/imageView9"
@@ -101,9 +105,10 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         app:layout_constraintBottom_toTopOf="@+id/title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.336"
-        app:srcCompat="@drawable/logo"
-        tools:layout_editor_absoluteX="104dp" />
+        app:srcCompat="@drawable/logo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
