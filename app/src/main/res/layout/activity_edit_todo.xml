@@ -5,7 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".EditTodoAll"
-    android:background="@color/background">
+    android:background="@color/button"
+
+    >
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="411dp"
+        android:layout_height="641dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/sheet" />
 
     <TextView
         android:id="@+id/title"
@@ -22,34 +33,34 @@
 
     <EditText
         android:id="@+id/editToDoTextTitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="341dp"
+        android:layout_height="55dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="112dp"
         android:layout_marginEnd="32dp"
+        android:backgroundTint="@color/hint"
         android:ems="10"
         android:hint="Title"
-        android:textColor="@color/white"
-        android:backgroundTint="@color/hint"
-        android:textColorHint="@color/hint"
         android:inputType="textPersonName"
+        android:textColor="@color/white"
+        android:textColorHint="@color/hint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <EditText
         android:id="@+id/editToDoTextDescription"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="341dp"
+        android:layout_height="63dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
-        android:ems="10"
-        android:textColor="@color/white"
         android:backgroundTint="@color/hint"
-        android:textColorHint="@color/hint"
+        android:ems="10"
         android:hint="Description"
         android:inputType="textPersonName"
+        android:textColor="@color/white"
+        android:textColorHint="@color/hint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editToDoTextTitle" />
@@ -65,5 +76,23 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editToDoTextDescription" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="219dp"
+        android:layout_height="58dp"
+        app:srcCompat="@drawable/logo"
+        tools:layout_editor_absoluteX="96dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <!--    <ImageView-->
+<!--        android:id="@+id/imageView4"-->
+<!--        android:layout_width="130dp"-->
+<!--        android:layout_height="53dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.498"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:srcCompat="@drawable/logo"-->
+<!--        tools:layout_editor_absoluteY="16dp" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
