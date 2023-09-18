@@ -4,13 +4,11 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
-import android.widget.EditText
 import android.widget.ListView
+import android.widget.SearchView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 
 class MainActivity : AppCompatActivity() {
@@ -21,10 +19,30 @@ class MainActivity : AppCompatActivity() {
     private  lateinit var  listview1 : ListView
     private  lateinit var dbHandler:DbHandler
     private  lateinit var  todosDisplayMain:List<ToDo>
+//    private lateinit var recyclerView: RecyclerView
+    private lateinit var searchView: SearchView
+//    private var mList = ArrayList<LanguageData>()
+//    private lateinit var adapter: LanguageAdapter
+
     // first execute onCreate function
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        //search
+//        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+//            override fun onQueryTextSubmit(query: String?): Boolean {
+//                return false
+//            }
+//
+//            override fun onQueryTextChange(newText: String?): Boolean {
+//                filterList(newText)
+//                return true
+//            }
+//
+//        })
+
+
 
         //get the all id to relevant to the this activity
         count = findViewById(R.id.todocount)
@@ -75,4 +93,22 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+//
+//    private fun filterList(query: String?) {
+//
+//        if (query != null) {
+//            val filteredList = ArrayList<LanguageData>()
+//            for (i in todosDisplayMain) {
+//                if (i.title.lowercase(Locale.ROOT).contains(query)) {
+//                    filteredList.add(i)
+//                }
+//            }
+//
+//            if (filteredList.isEmpty()) {
+//                Toast.makeText(this, "No Data found", Toast.LENGTH_SHORT).show()
+//            } else {
+//                adapter.setFilteredList(filteredList)
+//            }
+//        }
+//    }
 }
