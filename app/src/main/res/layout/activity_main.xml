@@ -8,10 +8,23 @@
     tools:context=".MainActivity"
     android:background="@color/background">
 
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="12dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
     <ListView
         android:id="@+id/todolist"
         android:layout_width="match_parent"
-        android:layout_height="560dp"
+        android:layout_height="486dp"
         android:layout_margin="0dp"
         android:background="@color/background"
         android:clipToPadding="false"
@@ -47,7 +60,8 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="13dp"
-        android:text=" Add ToDo"
+        android:text="Add New Task"
+        android:drawableRight="@drawable/add"
         android:backgroundTint="@color/button"
         />
 
