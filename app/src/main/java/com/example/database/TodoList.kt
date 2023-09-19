@@ -55,7 +55,6 @@ class TodoList(context: Context, resource: Int, todos: List<ToDo>) :
         if (toDo.finished > 0) {
             imageView.visibility = View.VISIBLE
         }
-
         return row
     }
 
