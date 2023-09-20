@@ -81,6 +81,45 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView7"
         app:layout_constraintVertical_bias="0.538" />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/buttonEdit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editToDoTextDescription">
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Acedemic"
+            tools:layout_editor_absoluteX="85dp"
+            android:textColor="@color/white"
+            tools:layout_editor_absoluteY="433dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Personal"
+            tools:layout_editor_absoluteX="247dp"
+            android:textColor="@color/white"
+            tools:layout_editor_absoluteY="444dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Other"
+            android:textColor="@color/white"
+            tools:layout_editor_absoluteX="96dp"
+            tools:layout_editor_absoluteY="446dp" />
+
+
+    </LinearLayout>
+
     <Button
         android:id="@+id/buttonEdit"
         android:layout_width="wrap_content"
@@ -110,5 +149,9 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.336"
         app:srcCompat="@drawable/logo" />
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
