@@ -6,6 +6,7 @@ class ToDo {
     var started: Long = 0
     var finished: Long = 0
 
+
     constructor() {}
     constructor(id: Int, title: String?, description: String?, started: Long, finished: Long) {
         this.id = id
