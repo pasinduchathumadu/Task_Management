@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper
 class DbHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, VERSION) {
     //Store These Data
     companion object {
-        private const val VERSION = 2
+        private const val VERSION = 1
         private const val DB_NAME = "todo"
         private const val TABLE_NAME = "todo"
         private const val USER_TABLE = "users"
