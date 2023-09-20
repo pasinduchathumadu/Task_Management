@@ -34,6 +34,33 @@
         android:textColorHint="@color/white"
         app:actionViewClass="androidx.appcompat.widget.SearchView"/>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/buttonall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="All" />
+        <Button
+            android:id="@+id/buttonacedemic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Acedemic" />
+        <Button
+            android:id="@+id/buttonpersonal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Personal" />
+        <Button
+            android:id="@+id/buttonother"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Other" />
+
+    </LinearLayout>
+
 
     <ListView
         android:id="@+id/todolist"
