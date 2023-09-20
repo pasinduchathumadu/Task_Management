@@ -31,20 +31,18 @@ class EditTodoAll : AppCompatActivity() {
 
         if (todo != null) {
             title.setText(todo.title)
-        }
-        if (todo != null) {
             des.setText(todo.description)
         }
 
         edit.setOnClickListener {
-            val titleText = title.text.toString()
-            val decText = des.text.toString()
+            val titleText = title.text?.toString()
+            val descText = des.text?.toString()
             updateDate = System.currentTimeMillis()
 
-            val toDo = id?.let { it1 -> ToDo(it1.toInt(), titleText, decText, updateDate, 0) }
+            val toDo = id?.let { it1 -> ToDo(it1.toInt(), titleText, descText, 0, updateDate, null) }
             val state = toDo?.let { it1 -> dbHandler.updateSingleToDo(it1) }
             println(state)
-            startActivity(Intent(context , MainActivity::class.java))
+            startActivity(Intent(context, MainActivity::class.java))
         }
     }
 }

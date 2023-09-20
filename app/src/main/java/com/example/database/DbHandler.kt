@@ -293,7 +293,7 @@ class DbHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, VER
 
         return result
     }
-// delete task
+    // delete task
     fun deleteToDo(id: Int) {
         val db = writableDatabase
         db.delete(TABLE_NAME, "id =?", arrayOf(id.toString()))
