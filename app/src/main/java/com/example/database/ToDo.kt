@@ -23,5 +23,6 @@ class ToDo {
         this.started = started
         this.finished = finished
         this.category = category
+
     }
 }

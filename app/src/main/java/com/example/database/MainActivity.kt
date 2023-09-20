@@ -73,6 +73,12 @@ class MainActivity : AppCompatActivity() {
         button1 = findViewById(R.id.add)
         countText = findViewById(R.id.todocount)
         listview1 = findViewById(R.id.todolist)
+
+        buttonall = findViewById(R.id.buttonall)
+        buttonaccedemic = findViewById(R.id.buttonacedemic)
+        buttonpersonal = findViewById(R.id.buttonpersonal)
+        buttonother = findViewById(R.id.buttonother)
+
         context = this
         //dbhandler class calling
         dbHandler = DbHandler(context)
