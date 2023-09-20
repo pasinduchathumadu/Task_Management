@@ -21,6 +21,7 @@ class DbHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, VER
         const val DESCRIPTION = "description"
         const val STARTED = "started"
         const val FINISHED = "finished"
+        const val CATEGORY = "category"
     }
     private object UserColumns {
         const val EMAIL = "email"
@@ -35,7 +36,8 @@ class DbHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, VER
                 "${Columns.TITLE} TEXT," +
                 "${Columns.DESCRIPTION} TEXT," +
                 "${Columns.STARTED} TEXT," +
-                "${Columns.FINISHED} TEXT" +
+                "${Columns.FINISHED} TEXT," +
+                "${Columns.CATEGORY} TEXT" +
                 ");"
         db.execSQL(TABLE_CREATE_QUERY)
         val USER_TABLE_CREATE_QUERY = "CREATE TABLE $USER_TABLE " +
@@ -62,6 +64,7 @@ class DbHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, VER
         contentValues.put(Columns.DESCRIPTION, toDo.description)
         contentValues.put(Columns.STARTED, toDo.started)
         contentValues.put(Columns.FINISHED, toDo.finished)
+        contentValues.put(Columns.CATEGORY,toDo.category)
         //insert the query for
         sqLiteDatabase.insert(TABLE_NAME, null, contentValues)
         sqLiteDatabase.close()
@@ -92,6 +95,7 @@ class DbHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, VER
                 val descriptionIndex = cursor.getColumnIndex(Columns.DESCRIPTION)
                 val startIndex = cursor.getColumnIndex(Columns.STARTED)
                 val finishIndex = cursor.getColumnIndex(Columns.FINISHED)
+                val categoryIndex = cursor.getColumnIndex(Columns.CATEGORY)
                 if(descriptionIndex != -1){
                     toDo.description = cursor.getString(descriptionIndex)
                 }
@@ -108,6 +112,9 @@ class DbHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, VER
                 if (titleIndex != -1) {
                     toDo.title = cursor.getString(titleIndex)
                 }
+                if(categoryIndex != -1){
+                    toDo.category = cursor.getString(categoryIndex)
+                }
                 //add into the list
                 toDos.add(toDo)
             } while (cursor.moveToNext())
@@ -115,6 +122,138 @@ class DbHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, VER
         cursor.close()
         return toDos
     }
+    fun getPersonalToDos(): List<ToDo> {
+        // initialize the List
+        val toDos = mutableListOf<ToDo>()
+        val db = readableDatabase
+        val query = "SELECT * FROM $TABLE_NAME WHERE ${Columns.CATEGORY} = 'Personal'"
+        val cursor = db.rawQuery(query, null)
+        //using do-while loop to get the row by row
+        if (cursor.moveToFirst()) {
+            do {
+                //creating todo object
+                val toDo = ToDo()
+                val idIndex = cursor.getColumnIndex(Columns.ID)
+                val titleIndex = cursor.getColumnIndex(Columns.TITLE)
+                val descriptionIndex = cursor.getColumnIndex(Columns.DESCRIPTION)
+                val startIndex = cursor.getColumnIndex(Columns.STARTED)
+                val finishIndex = cursor.getColumnIndex(Columns.FINISHED)
+                val categoryIndex = cursor.getColumnIndex(Columns.CATEGORY)
+                if(descriptionIndex != -1){
+                    toDo.description = cursor.getString(descriptionIndex)
+                }
+                if(startIndex!=-1){
+                    toDo.started = cursor.getLong(startIndex)
+                }
+                if(finishIndex !=-1){
+                    toDo.finished = cursor.getLong(finishIndex)
+                }
+                if (idIndex != -1) {
+                    toDo.id = cursor.getInt(idIndex)
+                }
+
+                if (titleIndex != -1) {
+                    toDo.title = cursor.getString(titleIndex)
+                }
+                if(categoryIndex != -1){
+                    toDo.category = cursor.getString(categoryIndex)
+                }
+                //add into the list
+                toDos.add(toDo)
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        return toDos
+    }
+
+    fun getAccedemicToDos(): List<ToDo> {
+        // initialize the List
+        val toDos = mutableListOf<ToDo>()
+        val db = readableDatabase
+        val query = "SELECT * FROM $TABLE_NAME WHERE ${Columns.CATEGORY} = 'Academic'"
+        val cursor = db.rawQuery(query, null)
+        //using do-while loop to get the row by row
+        if (cursor.moveToFirst()) {
+            do {
+                //creating todo object
+                val toDo = ToDo()
+                val idIndex = cursor.getColumnIndex(Columns.ID)
+                val titleIndex = cursor.getColumnIndex(Columns.TITLE)
+                val descriptionIndex = cursor.getColumnIndex(Columns.DESCRIPTION)
+                val startIndex = cursor.getColumnIndex(Columns.STARTED)
+                val finishIndex = cursor.getColumnIndex(Columns.FINISHED)
+                val categoryIndex = cursor.getColumnIndex(Columns.CATEGORY)
+                if(descriptionIndex != -1){
+                    toDo.description = cursor.getString(descriptionIndex)
+                }
+                if(startIndex!=-1){
+                    toDo.started = cursor.getLong(startIndex)
+                }
+                if(finishIndex !=-1){
+                    toDo.finished = cursor.getLong(finishIndex)
+                }
+                if (idIndex != -1) {
+                    toDo.id = cursor.getInt(idIndex)
+                }
+
+                if (titleIndex != -1) {
+                    toDo.title = cursor.getString(titleIndex)
+                }
+                if(categoryIndex != -1){
+                    toDo.category = cursor.getString(categoryIndex)
+                }
+                //add into the list
+                toDos.add(toDo)
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        return toDos
+    }
+
+    fun getOtherToDos(): List<ToDo> {
+        // initialize the List
+        val toDos = mutableListOf<ToDo>()
+        val db = readableDatabase
+        val query = "SELECT * FROM $TABLE_NAME WHERE ${Columns.CATEGORY} = 'Other'"
+        val cursor = db.rawQuery(query, null)
+        //using do-while loop to get the row by row
+        if (cursor.moveToFirst()) {
+            do {
+                //creating todo object
+                val toDo = ToDo()
+                val idIndex = cursor.getColumnIndex(Columns.ID)
+                val titleIndex = cursor.getColumnIndex(Columns.TITLE)
+                val descriptionIndex = cursor.getColumnIndex(Columns.DESCRIPTION)
+                val startIndex = cursor.getColumnIndex(Columns.STARTED)
+                val finishIndex = cursor.getColumnIndex(Columns.FINISHED)
+                val categoryIndex = cursor.getColumnIndex(Columns.CATEGORY)
+                if(descriptionIndex != -1){
+                    toDo.description = cursor.getString(descriptionIndex)
+                }
+                if(startIndex!=-1){
+                    toDo.started = cursor.getLong(startIndex)
+                }
+                if(finishIndex !=-1){
+                    toDo.finished = cursor.getLong(finishIndex)
+                }
+                if (idIndex != -1) {
+                    toDo.id = cursor.getInt(idIndex)
+                }
+
+                if (titleIndex != -1) {
+                    toDo.title = cursor.getString(titleIndex)
+                }
+                if(categoryIndex != -1){
+                    toDo.category = cursor.getString(categoryIndex)
+                }
+                //add into the list
+                toDos.add(toDo)
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        return toDos
+    }
+
 
     fun addUser(userData: UserData): Boolean {
         val db = writableDatabase
@@ -182,7 +321,8 @@ class DbHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, VER
                     it.getString(1),
                     it.getString(2),
                     it.getLong(3),
-                    it.getLong(4)
+                    it.getLong(4),
+                    it.getString(5)
                 )
             }
         }
