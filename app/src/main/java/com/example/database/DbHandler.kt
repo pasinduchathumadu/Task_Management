@@ -305,7 +305,7 @@ class DbHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, VER
 
         val cursor = db.query(
             TABLE_NAME,
-            arrayOf(Columns.ID, Columns.TITLE, Columns.DESCRIPTION, Columns.STARTED, Columns.FINISHED),
+            arrayOf(Columns.ID, Columns.TITLE, Columns.DESCRIPTION, Columns.STARTED, Columns.FINISHED,Columns.CATEGORY),
             "${Columns.ID} = ?",
             arrayOf(id.toString()),
             null,
