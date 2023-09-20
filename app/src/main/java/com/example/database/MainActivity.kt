@@ -22,6 +22,11 @@ class MainActivity : AppCompatActivity() {
     private  lateinit var  todosDisplayMain:List<ToDo>
     private lateinit var searchView: SearchView
     private lateinit var adapter: TodoList
+    private lateinit var  buttonall :Button
+    private lateinit var  buttonpersonal : Button
+    private lateinit var buttonaccedemic: Button
+    private lateinit var buttonother : Button
+
 
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -78,6 +83,32 @@ class MainActivity : AppCompatActivity() {
         // pass to the adapter to display the content
         val adapter = TodoList(this,R.layout.single_text_view,todosDisplayMain)
         listview1.adapter=adapter
+        buttonall.setOnClickListener(View.OnClickListener {
+            todosDisplayMain = dbHandler.getAllToDos()
+            // pass to the adapter to display the content
+            val adapter = TodoList(this,R.layout.single_text_view,todosDisplayMain)
+            listview1.adapter=adapter
+        })
+        buttonaccedemic.setOnClickListener(View.OnClickListener {
+            todosDisplayMain = dbHandler.getAccedemicToDos()
+            // pass to the adapter to display the content
+            val adapter = TodoList(this,R.layout.single_text_view,todosDisplayMain)
+            listview1.adapter=adapter
+
+        })
+        buttonpersonal.setOnClickListener(View.OnClickListener {
+            todosDisplayMain = dbHandler.getPersonalToDos()
+            // pass to the adapter to display the content
+            val adapter = TodoList(this,R.layout.single_text_view,todosDisplayMain)
+            listview1.adapter=adapter
+        })
+        buttonother.setOnClickListener(View.OnClickListener {
+            todosDisplayMain = dbHandler.getOtherToDos()
+            // pass to the adapter to display the content
+            val adapter = TodoList(this,R.layout.single_text_view,todosDisplayMain)
+            listview1.adapter=adapter
+
+        })
         // display the count
         val countTodo = dbHandler.countToDo()
         count.text = "You have $countTodo todos"
