@@ -79,6 +79,54 @@ class DbHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, VER
         return cursor.count
     }
     // return type is List
+    fun search(input: String): List<ToDo> {
+        val toDos = mutableListOf<ToDo>()
+        val db = readableDatabase
+
+        // Use placeholders and selectionArgs to avoid SQL injection
+        val query = "SELECT * FROM $TABLE_NAME WHERE ${Columns.TITLE} = ?"
+        val selectionArgs = arrayOf(input)
+
+        val cursor = db.rawQuery(query, selectionArgs)
+
+        if (cursor.moveToFirst()) {
+            do {
+                // Create a ToDo object and populate it from the cursor
+                val toDo = ToDo()
+                val idIndex = cursor.getColumnIndex(Columns.ID)
+                val titleIndex = cursor.getColumnIndex(Columns.TITLE)
+                val descriptionIndex = cursor.getColumnIndex(Columns.DESCRIPTION)
+                val startIndex = cursor.getColumnIndex(Columns.STARTED)
+                val finishIndex = cursor.getColumnIndex(Columns.FINISHED)
+                val categoryIndex = cursor.getColumnIndex(Columns.CATEGORY)
+                if(descriptionIndex != -1){
+                    toDo.description = cursor.getString(descriptionIndex)
+                }
+                if(startIndex!=-1){
+                    toDo.started = cursor.getLong(startIndex)
+                }
+                if(finishIndex !=-1){
+                    toDo.finished = cursor.getLong(finishIndex)
+                }
+                if (idIndex != -1) {
+                    toDo.id = cursor.getInt(idIndex)
+                }
+
+                if (titleIndex != -1) {
+                    toDo.title = cursor.getString(titleIndex)
+                }
+                if(categoryIndex != -1){
+                    toDo.category = cursor.getString(categoryIndex)
+                }
+                // Add the ToDo object to the list
+                toDos.add(toDo)
+            } while (cursor.moveToNext())
+        }
+
+        cursor.close()
+        return toDos
+    }
+
     fun getAllToDos(): List<ToDo> {
         // initialize the List
         val toDos = mutableListOf<ToDo>()
