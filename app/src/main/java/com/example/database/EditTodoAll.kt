@@ -25,7 +25,6 @@ class EditTodoAll : AppCompatActivity() {
         title = findViewById(R.id.editToDoTextTitle)
         des = findViewById(R.id.editToDoTextDescription)
         edit = findViewById(R.id.buttonEdit)
-
         val id = intent.getStringExtra("id")
         val todo = id?.let { dbHandler.getSingleToDo(it.toInt()) }
 
@@ -40,11 +39,23 @@ class EditTodoAll : AppCompatActivity() {
             val titleText = title.text.toString()
             val decText = des.text.toString()
             updateDate = System.currentTimeMillis()
-
-            val toDo = id?.let { it1 -> ToDo(it1.toInt(), titleText, decText, updateDate, 0) }
+            val toDo = id?.let { it1 ->
+                todo?.let { it2 ->
+                    ToDo(it1.toInt(), titleText, decText, it2.started,todo.finished,
+                        todo?.category
+                    )
+                }
+            }
             val state = toDo?.let { it1 -> dbHandler.updateSingleToDo(it1) }
+
             println(state)
             startActivity(Intent(context , MainActivity::class.java))
         }
+
+
+
+
+
+
     }
 }

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.View
 import android.widget.Button
 import android.widget.ListView
@@ -19,11 +20,34 @@ class MainActivity : AppCompatActivity() {
     private  lateinit var  listview1 : ListView
     private  lateinit var dbHandler:DbHandler
     private  lateinit var  todosDisplayMain:List<ToDo>
-//    private lateinit var recyclerView: RecyclerView
     private lateinit var searchView: SearchView
-//    private var mList = ArrayList<LanguageData>()
-//    private lateinit var adapter: LanguageAdapter
+    private lateinit var adapter: TodoList
+    private lateinit var  buttonall :Button
+    private lateinit var  buttonpersonal : Button
+    private lateinit var buttonaccedemic: Button
+    private lateinit var buttonother : Button
 
+
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        val searchItem = menu?.findItem(R.id.action_search)
+        searchView = searchItem?.actionView as SearchView
+        searchView.queryHint = "Search To-Dos"
+
+        // Set up the query text listener
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapter.filter(newText)
+                return true
+            }
+        })
+        return true
+    }
     // first execute onCreate function
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +73,12 @@ class MainActivity : AppCompatActivity() {
         button1 = findViewById(R.id.add)
         countText = findViewById(R.id.todocount)
         listview1 = findViewById(R.id.todolist)
+
+        buttonall = findViewById(R.id.buttonall)
+        buttonaccedemic = findViewById(R.id.buttonacedemic)
+        buttonpersonal = findViewById(R.id.buttonpersonal)
+        buttonother = findViewById(R.id.buttonother)
+
         context = this
         //dbhandler class calling
         dbHandler = DbHandler(context)
@@ -59,6 +89,32 @@ class MainActivity : AppCompatActivity() {
         // pass to the adapter to display the content
         val adapter = TodoList(this,R.layout.single_text_view,todosDisplayMain)
         listview1.adapter=adapter
+        buttonall.setOnClickListener(View.OnClickListener {
+            todosDisplayMain = dbHandler.getAllToDos()
+            // pass to the adapter to display the content
+            val adapter = TodoList(this,R.layout.single_text_view,todosDisplayMain)
+            listview1.adapter=adapter
+        })
+        buttonaccedemic.setOnClickListener(View.OnClickListener {
+            todosDisplayMain = dbHandler.getAccedemicToDos()
+            // pass to the adapter to display the content
+            val adapter = TodoList(this,R.layout.single_text_view,todosDisplayMain)
+            listview1.adapter=adapter
+
+        })
+        buttonpersonal.setOnClickListener(View.OnClickListener {
+            todosDisplayMain = dbHandler.getPersonalToDos()
+            // pass to the adapter to display the content
+            val adapter = TodoList(this,R.layout.single_text_view,todosDisplayMain)
+            listview1.adapter=adapter
+        })
+        buttonother.setOnClickListener(View.OnClickListener {
+            todosDisplayMain = dbHandler.getOtherToDos()
+            // pass to the adapter to display the content
+            val adapter = TodoList(this,R.layout.single_text_view,todosDisplayMain)
+            listview1.adapter=adapter
+
+        })
         // display the count
         val countTodo = dbHandler.countToDo()
         count.text = "You have $countTodo todos"
