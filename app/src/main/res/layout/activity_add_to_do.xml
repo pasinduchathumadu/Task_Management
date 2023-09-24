@@ -14,7 +14,7 @@
         android:layout_height="605dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
@@ -39,9 +39,10 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/editToDoTextTitle"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView10"
-        app:layout_constraintVertical_bias="0.376" />
+        app:layout_constraintVertical_bias="0.559" />
 
     <EditText
         android:id="@+id/editToDoTextTitle"
@@ -58,9 +59,27 @@
         android:textColorHint="@color/hint"
         app:layout_constraintBottom_toTopOf="@+id/editToDoTextDescription"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView10"
-        app:layout_constraintVertical_bias="0.735" />
+        app:layout_constraintVertical_bias="0.479" />
+
+    <EditText
+        android:id="@+id/editToDoDate"
+        android:layout_width="351dp"
+        android:layout_height="49dp"
+        android:backgroundTint="@color/hint"
+        android:ems="10"
+        android:hint="Date"
+        android:inputType="date"
+        android:textColor="@color/white"
+        android:textColorHint="@color/hint"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.549" />
 
     <EditText
         android:id="@+id/editToDoTextDescription"
@@ -77,9 +96,24 @@
         android:textColorHint="@color/hint"
         app:layout_constraintBottom_toBottomOf="@+id/imageView10"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.45"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView7"
-        app:layout_constraintVertical_bias="0.538" />
+        app:layout_constraintVertical_bias="0.693" />
+
+    <CheckBox
+        android:id="@+id/editToDoPriority"
+        android:layout_width="158dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="224dp"
+        android:backgroundTint="@color/hint"
+        android:text="High Priority"
+        android:textColor="@color/hint"
+        android:textColorHint="@color/hint"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.834" />
 
     <Button
         android:id="@+id/buttonEdit"
@@ -93,9 +127,10 @@
         android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.535"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editToDoTextDescription"
-        app:layout_constraintVertical_bias="0.256" />
+        app:layout_constraintVertical_bias="0.716" />
 
     <ImageView
         android:id="@+id/imageView9"

@@ -18,15 +18,78 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent">
 
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="90dp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/days"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/background">
+
+            <TextView
+                android:id="@+id/textViewDays"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Days"
+                android:textColor="@color/white"
+                android:textColorHighlight="@color/white"
+                android:textColorHint="@color/white"
+                android:textColorLink="@color/white" />
+        </androidx.cardview.widget.CardView>
+    </HorizontalScrollView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/Menu"
+        android:layout_width="match_parent"
+        android:layout_height="67dp"
+        app:cardBackgroundColor="@color/background">
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/button"
+            android:text="My Tasks"
+            android:textColor="@color/white"
+            android:textColorHighlight="@color/button"
+            android:textColorLink="@color/button" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="280dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/button"
+            android:text="Completed" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="145dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/button"
+            android:text="In-Progress" />
+
+    </androidx.cardview.widget.CardView>
 
     <ListView
         android:id="@+id/todolist"
         android:layout_width="match_parent"
-        android:layout_height="486dp"
+        android:layout_height="367dp"
         android:layout_margin="0dp"
         android:background="@color/background"
+        android:backgroundTint="@color/background"
         android:clipToPadding="false"
         android:divider="@null"
         android:dividerHeight="8dp"
@@ -34,7 +97,6 @@
         android:padding="16dp"
         android:scrollbars="none"
         android:textColor="@color/white" />
-
 
     <TextView
         android:id="@+id/todocount"
@@ -45,8 +107,8 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
         android:text="You have x ToDos In Today"
-        android:textSize="20sp"
         android:textColor="@color/white"
+        android:textSize="20sp"
 
         />
 
@@ -55,15 +117,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:textSize="24dp"
-        android:textColor="@color/white"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="13dp"
-        android:text="Add New Task"
-        android:drawableRight="@drawable/add"
         android:backgroundTint="@color/button"
-        />
+        android:drawableRight="@drawable/add"
+        android:text="Add New Task"
+        android:textColor="@color/white"
+        android:textSize="24dp" />
 
 
 </LinearLayout>
