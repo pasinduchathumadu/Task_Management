@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity"
-    android:background="@color/hint">
+    android:background="@color/button">
 
     <!--    <com.google.android.material.card.MaterialCardView-->
     <!--        android:id="@+id/materialCardView"-->
@@ -19,48 +19,104 @@
     <!--        app:layout_constraintHorizontal_bias="0.5"-->
     <!--        app:layout_constraintStart_toStartOf="parent"-->
     <!--        app:layout_constraintTop_toTopOf="parent"/>-->
-
-    <SearchView
-        android:id="@+id/searchView"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"
-        android:iconifiedByDefault="false"
-        android:queryHint="Search To-Dos"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"/>
+        android:orientation="horizontal"
+        android:background="@color/button">
+
+        <Button
+            android:id="@+id/searchButton"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="314dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="2dp"
+
+            android:backgroundTint="@color/button"
+            android:drawableTop="@drawable/search_bg"
+
+
+            android:textColorHint="@color/hint" />
+
+        <EditText
+            android:id="@+id/searchView"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="287dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="57dp"
+            android:layout_marginBottom="8dp"
+            android:hint="Search Here ...."
+            android:iconifiedByDefault="false"
+
+            android:inputType="textPersonName"
+            android:textColor="@color/white"
+            android:textColorHint="@color/hint"
+            app:boxStrokeColor="@color/black" />
+
+
+
+    </RelativeLayout>
+
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/button">
+
 
         <Button
             android:id="@+id/buttonall"
+            style="?attr/materialButtonOutlinedStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
+            android:textColor="@color/blue"
+            app:strokeColor="@color/blue"
+
             android:text="All" />
+
         <Button
             android:id="@+id/buttonacedemic"
+            style="?attr/materialButtonOutlinedStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Acedemic" />
+            android:layout_margin="1dp"
+            android:backgroundTint="@color/button"
+
+            android:textColor="@color/blue"
+            app:strokeColor="@color/blue"
+            android:text="Academic" />
+
         <Button
             android:id="@+id/buttonpersonal"
+            style="?attr/materialButtonOutlinedStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
+            android:backgroundTint="@color/button"
+            android:textColor="@color/blue"
+            app:strokeColor="@color/blue"
             android:text="Personal" />
+
         <Button
             android:id="@+id/buttonother"
+            style="?attr/materialButtonOutlinedStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
+            android:backgroundTint="@color/button"
+            android:textColor="@color/blue"
+            app:strokeColor="@color/blue"
             android:text="Other" />
 
     </LinearLayout>
-
 
     <ListView
         android:id="@+id/todolist"
@@ -93,6 +149,7 @@
 
     <Button
         android:id="@+id/add"
+        style="?attr/materialButtonOutlinedStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
@@ -102,8 +159,14 @@
         android:backgroundTint="@color/button"
         android:drawableRight="@drawable/add"
         android:text="Add New Task"
+
+        app:strokeColor="@color/white"
         android:textColor="@color/white"
         android:textSize="24dp" />
+
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 
 </LinearLayout>

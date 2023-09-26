@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ListView
 import android.widget.SearchView
 import android.widget.TextView
@@ -20,8 +21,8 @@ class MainActivity : AppCompatActivity() {
     private  lateinit var  listview1 : ListView
     private  lateinit var dbHandler:DbHandler
     private  lateinit var  todosDisplayMain:List<ToDo>
-    private lateinit var searchView: SearchView
-    private lateinit var adapter: TodoList
+    private lateinit var searchView: EditText
+    private lateinit var buttonsearch:Button
     private lateinit var  buttonall :Button
     private lateinit var  buttonpersonal : Button
     private lateinit var buttonaccedemic: Button
@@ -29,51 +30,21 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
-        val searchItem = menu?.findItem(R.id.action_search)
-        searchView = searchItem?.actionView as SearchView
-        searchView.queryHint = "Search To-Dos"
 
-        // Set up the query text listener
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
-            }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-                adapter.filter(newText)
-                return true
-            }
-        })
-        return true
-    }
+
     // first execute onCreate function
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        //search
-//        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-//            override fun onQueryTextSubmit(query: String?): Boolean {
-//                return false
-//            }
-//
-//            override fun onQueryTextChange(newText: String?): Boolean {
-//                filterList(newText)
-//                return true
-//            }
-//
-//        })
-
-
 
         //get the all id to relevant to the this activity
         count = findViewById(R.id.todocount)
         button1 = findViewById(R.id.add)
         countText = findViewById(R.id.todocount)
         listview1 = findViewById(R.id.todolist)
-
+        buttonsearch = findViewById(R.id.searchButton)
+        searchView = findViewById(R.id.searchView)
         buttonall = findViewById(R.id.buttonall)
         buttonaccedemic = findViewById(R.id.buttonacedemic)
         buttonpersonal = findViewById(R.id.buttonpersonal)
@@ -114,6 +85,12 @@ class MainActivity : AppCompatActivity() {
             val adapter = TodoList(this,R.layout.single_text_view,todosDisplayMain)
             listview1.adapter=adapter
 
+        })
+        searchView.setOnClickListener(View.OnClickListener {
+            val input = searchView.text?.toString()
+            val result = input?.let { it1 -> dbHandler.search(it1) }
+            val adapter = result?.let { it1 -> TodoList(this,R.layout.single_text_view, it1) }
+            listview1.adapter=adapter
         })
         // display the count
         val countTodo = dbHandler.countToDo()
