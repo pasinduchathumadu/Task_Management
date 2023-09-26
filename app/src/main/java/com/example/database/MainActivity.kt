@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
             listview1.adapter=adapter
 
         })
-        buttonsearch.setOnClickListener(View.OnClickListener {
+        searchView.setOnClickListener(View.OnClickListener {
             val input = searchView.text?.toString()
             val result = input?.let { it1 -> dbHandler.search(it1) }
             val adapter = result?.let { it1 -> TodoList(this,R.layout.single_text_view, it1) }
