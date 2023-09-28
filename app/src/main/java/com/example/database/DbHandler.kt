@@ -398,6 +398,10 @@ class DbHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, VER
         contentValues.put(Columns.DESCRIPTION, toDo.description)
         contentValues.put(Columns.STARTED, toDo.started)
         contentValues.put(Columns.FINISHED, toDo.finished)
+        contentValues.put(Columns.DATE, toDo.date)
+        contentValues.put(Columns.TIME, toDo.time)
+        contentValues.put(Columns.PRIORITY, toDo.priority)
+        contentValues.put(Columns.CATEGORY, toDo.category)
 
         val status = db.update(
             TABLE_NAME, contentValues,
