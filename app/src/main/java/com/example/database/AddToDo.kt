@@ -20,6 +20,10 @@ class AddToDo : AppCompatActivity() {
     private lateinit var add: Button
     private lateinit var dbHandler: DbHandler
     private lateinit var context: Context
+    private lateinit var button1 : Button
+    private lateinit var button2 : Button
+    private lateinit var button3 : Button
+    private var category = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,25 +34,35 @@ class AddToDo : AppCompatActivity() {
         date = findViewById(R.id.editToDoDate)
         priority = findViewById(R.id.editToDoPriority)
         add = findViewById(R.id.buttonEdit)
+        button1 = findViewById(R.id.radioButton)
+        button2 = findViewById(R.id.radioButton2)
+        button3 = findViewById(R.id.radioButton3)
         context = this
 
         dbHandler = DbHandler(context)
+
+        button1.setOnClickListener(View.OnClickListener {
+            category = "Academic"
+        })
+        button2.setOnClickListener(View.OnClickListener {
+            category = "Personal"
+        })
+        button3.setOnClickListener(View.OnClickListener {
+            category = "Other"
+        })
 
         add.setOnClickListener(View.OnClickListener {
             val userTitle = title.text?.toString()
             val userDesc = desc.text?.toString()
             val userDate = date.text?.toString()
             val started = System.currentTimeMillis()
-            if(userTitle!="" && userDesc!="" && userDate!=""){
-                if(priority.isChecked) {
-                    val toDo = ToDo(userTitle, userDesc, userDate, 1, started, 0)
-                    dbHandler.addToDo(toDo)
-                    startActivity(Intent(context, MainActivity::class.java))
-                }else{
-                    val toDo = ToDo(userTitle, userDesc, userDate, 0, started, 0)
-                    dbHandler.addToDo(toDo)
-                    startActivity(Intent(context, MainActivity::class.java))
-                }
+
+
+            if(userTitle!="" && userDesc!=""){
+                val toDo = ToDo(userTitle, userDesc, started, 0,category)
+                dbHandler.addToDo(toDo)
+                startActivity(Intent(context, MainActivity::class.java))
+
             }
             startActivity(Intent(context, MainActivity::class.java))
         })

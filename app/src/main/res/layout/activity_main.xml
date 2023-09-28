@@ -6,87 +6,125 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity"
-    android:background="@color/background">
+    android:background="@color/button">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView"
+    <!--    <com.google.android.material.card.MaterialCardView-->
+    <!--        android:id="@+id/materialCardView"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        app:cardCornerRadius="8dp"-->
+    <!--        app:cardElevation="12dp"-->
+    <!--        app:cardUseCompatPadding="true"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.5"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"/>-->
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="12dp"
-        app:cardUseCompatPadding="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
-    </com.google.android.material.card.MaterialCardView>
-
-
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="90dp">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/days"
-            android:layout_width="80dp"
-            android:layout_height="match_parent"
-            android:backgroundTint="@color/background">
-
-            <TextView
-                android:id="@+id/textViewDays"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Days"
-                android:textColor="@color/white"
-                android:textColorHighlight="@color/white"
-                android:textColorHint="@color/white"
-                android:textColorLink="@color/white" />
-        </androidx.cardview.widget.CardView>
-    </HorizontalScrollView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/Menu"
-        android:layout_width="match_parent"
-        android:layout_height="67dp"
-        app:cardBackgroundColor="@color/background">
+        android:orientation="horizontal"
+        android:background="@color/button">
 
         <Button
-            android:id="@+id/button3"
-            android:layout_width="125dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            android:id="@+id/searchButton"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="314dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="2dp"
+
             android:backgroundTint="@color/button"
-            android:text="My Tasks"
+            android:drawableTop="@drawable/search_bg"
+
+
+            android:textColorHint="@color/hint" />
+
+        <EditText
+            android:id="@+id/searchView"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="287dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="57dp"
+            android:layout_marginBottom="8dp"
+            android:hint="Search Here ...."
+            android:iconifiedByDefault="false"
+
+            android:inputType="textPersonName"
             android:textColor="@color/white"
-            android:textColorHighlight="@color/button"
-            android:textColorLink="@color/button" />
+            android:textColorHint="@color/hint"
+            app:boxStrokeColor="@color/black" />
+
+
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/button">
+
 
         <Button
-            android:id="@+id/button5"
-            android:layout_width="125dp"
+            android:id="@+id/buttonall"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="280dp"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="@color/button"
-            android:text="Completed" />
+
+            android:textColor="@color/blue"
+            app:strokeColor="@color/blue"
+
+            android:text="All" />
 
         <Button
-            android:id="@+id/button4"
-            android:layout_width="125dp"
+            android:id="@+id/buttonacedemic"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="145dp"
-            android:layout_marginTop="10dp"
+            android:layout_margin="1dp"
             android:backgroundTint="@color/button"
-            android:text="In-Progress" />
 
-    </androidx.cardview.widget.CardView>
+            android:textColor="@color/blue"
+            app:strokeColor="@color/blue"
+            android:text="Academic" />
+
+        <Button
+            android:id="@+id/buttonpersonal"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:backgroundTint="@color/button"
+            android:textColor="@color/blue"
+            app:strokeColor="@color/blue"
+            android:text="Personal" />
+
+        <Button
+            android:id="@+id/buttonother"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:backgroundTint="@color/button"
+            android:textColor="@color/blue"
+            app:strokeColor="@color/blue"
+            android:text="Other" />
+
+    </LinearLayout>
+
 
     <ListView
         android:id="@+id/todolist"
         android:layout_width="match_parent"
-        android:layout_height="367dp"
+        android:layout_height="494dp"
+
         android:layout_margin="0dp"
         android:background="@color/background"
         android:backgroundTint="@color/background"
@@ -107,13 +145,16 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
         android:text="You have x ToDos In Today"
-        android:textColor="@color/white"
+
+        android:textColor="@color/black"
+
         android:textSize="20sp"
 
         />
 
     <Button
         android:id="@+id/add"
+        style="?attr/materialButtonOutlinedStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
@@ -123,8 +164,15 @@
         android:backgroundTint="@color/button"
         android:drawableRight="@drawable/add"
         android:text="Add New Task"
+
+        app:strokeColor="@color/white"
         android:textColor="@color/white"
         android:textSize="24dp" />
+
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 
 
 </LinearLayout>
