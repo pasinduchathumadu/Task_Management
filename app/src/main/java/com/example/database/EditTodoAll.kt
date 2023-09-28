@@ -35,6 +35,7 @@ class EditTodoAll : AppCompatActivity() {
             des.setText(todo.description)
         }
 
+
         edit.setOnClickListener {
             val titleText = title.text.toString()
             val decText = des.text.toString()
@@ -51,6 +52,7 @@ class EditTodoAll : AppCompatActivity() {
             println(state)
             startActivity(Intent(context , MainActivity::class.java))
         }
+
 
 
 
