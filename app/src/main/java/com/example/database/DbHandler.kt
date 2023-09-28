@@ -23,6 +23,7 @@ class DbHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, VER
         const val FINISHED = "finished"
         const val DATE = "date"
         const val TIME = "time"
+        const val PRIORITY = "priority"
         const val CATEGORY = "category"
     }
     private object UserColumns {
@@ -41,6 +42,7 @@ class DbHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, VER
                 "${Columns.FINISHED} TEXT," +
                 "${Columns.DATE} TEXT," +
                 "${Columns.TIME} TEXT," +
+                "${Columns.PRIORITY} TEXT," +
                 "${Columns.CATEGORY} TEXT" +
                 ");"
         db.execSQL(TABLE_CREATE_QUERY)
@@ -70,6 +72,7 @@ class DbHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, VER
         contentValues.put(Columns.FINISHED, toDo.finished)
         contentValues.put(Columns.DATE, toDo.date)
         contentValues.put(Columns.TIME, toDo.time)
+        contentValues.put(Columns.PRIORITY, toDo.priority)
         contentValues.put(Columns.CATEGORY,toDo.category)
         //insert the query for
         sqLiteDatabase.insert(TABLE_NAME, null, contentValues)
@@ -359,7 +362,7 @@ class DbHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, VER
 
         val cursor = db.query(
             TABLE_NAME,
-            arrayOf(Columns.ID, Columns.TITLE, Columns.DESCRIPTION, Columns.STARTED, Columns.FINISHED,Columns.DATE, Columns.TIME,Columns.CATEGORY),
+            arrayOf(Columns.ID, Columns.TITLE, Columns.DESCRIPTION, Columns.STARTED, Columns.FINISHED,Columns.DATE, Columns.TIME,Columns.PRIORITY,Columns.CATEGORY),
             "${Columns.ID} = ?",
             arrayOf(id.toString()),
             null,
@@ -378,7 +381,9 @@ class DbHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, VER
                     it.getLong(4),
                     it.getString(5),
                     it.getString(6),
-                    it.getString(7)
+                    it.getString(7),
+                    it.getString(8)
+
                 )
             }
         }

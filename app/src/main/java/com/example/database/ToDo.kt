@@ -7,11 +7,12 @@ class ToDo {
     var finished: Long = 0
     var date : String? = null
     var time : String? = null
+    var priority : String? = null
     var category : String? = null
 
 
     constructor() {}
-    constructor(id: Int, title: String?, description: String?, started: Long, finished: Long, date: String?,time: String?, category: String?) {
+    constructor(id: Int, title: String?, description: String?, started: Long, finished: Long, date: String?,time: String?,priority: String?, category: String?) {
         this.id = id
         this.title = title
         this.description = description
@@ -19,15 +20,17 @@ class ToDo {
         this.finished = finished
         this.date = date
         this.time = time
+        this.priority = priority
         this.category = category
     }
-    constructor(title: String?, description: String?, started: Long, finished: Long,date: String?,time: String?, category: String?) {
+    constructor(title: String?, description: String?, started: Long, finished: Long,date: String?,time: String?,priority: String? ,category: String?) {
         this.title = title
         this.description = description
         this.started = started
         this.finished = finished
         this.date = date
         this.time = time
+        this.priority = priority
         this.category = category
 
     }
