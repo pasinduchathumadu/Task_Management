@@ -33,6 +33,7 @@ class TodoList(context: Context, resource: Int, todos: List<ToDo>) :
 
         val title = row.findViewById<TextView>(R.id.title)
         val description = row.findViewById<TextView>(R.id.description)
+        val priority = row.findViewById<TextView>(R.id.priority)
         val imageView = row.findViewById<ImageView>(R.id.onGoing)
 
 //        val toDo = todos[position]
@@ -50,6 +51,7 @@ class TodoList(context: Context, resource: Int, todos: List<ToDo>) :
         val toDo = filteredTodos[position]
         title.text = toDo.title
         description.text = toDo.description
+        priority.text=toDo.priority
         imageView.visibility = View.INVISIBLE
 
         if (toDo.finished > 0) {
