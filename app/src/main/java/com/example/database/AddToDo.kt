@@ -24,8 +24,6 @@ class AddToDo : AppCompatActivity() {
 
     private lateinit var title: EditText
     private lateinit var desc: EditText
-    private lateinit var date: EditText
-    private lateinit var priority :CheckBox
     private lateinit var add: Button
     private lateinit var dbHandler: DbHandler
     private lateinit var context: Context
@@ -54,8 +52,6 @@ class AddToDo : AppCompatActivity() {
 
         title = findViewById(R.id.editToDoTextTitle)
         desc = findViewById(R.id.editToDoTextDescription)
-        date = findViewById(R.id.editToDoDate)
-        priority = findViewById(R.id.editToDoPriority)
         add = findViewById(R.id.buttonEdit)
         button1 = findViewById(R.id.radioButton)
         button2 = findViewById(R.id.radioButton2)
@@ -145,7 +141,6 @@ class AddToDo : AppCompatActivity() {
         add.setOnClickListener(View.OnClickListener {
             val userTitle = title.text?.toString()
             val userDesc = desc.text?.toString()
-            val userDate = date.text?.toString()
             val started = System.currentTimeMillis()
             val date = txtDate.text?.toString()
             val time = txtTime.text?.toString()
