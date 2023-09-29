@@ -9,7 +9,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
+
 import android.widget.DatePicker
 import android.widget.TimePicker
 import java.util.Calendar
@@ -17,10 +19,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 
+
 class AddToDo : AppCompatActivity() {
 
     private lateinit var title: EditText
     private lateinit var desc: EditText
+    private lateinit var date: EditText
+    private lateinit var priority :CheckBox
     private lateinit var add: Button
     private lateinit var dbHandler: DbHandler
     private lateinit var context: Context
@@ -49,6 +54,8 @@ class AddToDo : AppCompatActivity() {
 
         title = findViewById(R.id.editToDoTextTitle)
         desc = findViewById(R.id.editToDoTextDescription)
+        date = findViewById(R.id.editToDoDate)
+        priority = findViewById(R.id.editToDoPriority)
         add = findViewById(R.id.buttonEdit)
         button1 = findViewById(R.id.radioButton)
         button2 = findViewById(R.id.radioButton2)
@@ -138,6 +145,7 @@ class AddToDo : AppCompatActivity() {
         add.setOnClickListener(View.OnClickListener {
             val userTitle = title.text?.toString()
             val userDesc = desc.text?.toString()
+            val userDate = date.text?.toString()
             val started = System.currentTimeMillis()
             val date = txtDate.text?.toString()
             val time = txtTime.text?.toString()
@@ -146,8 +154,10 @@ class AddToDo : AppCompatActivity() {
 
             if(userTitle!="" && userDesc!="" && date!="" && time!="" && priority!=""){
                 val toDo = ToDo(userTitle, userDesc, started, 0,date,time,priority,category)
+
                 dbHandler.addToDo(toDo)
                 startActivity(Intent(context, MainActivity::class.java))
+
             }
             startActivity(Intent(context, MainActivity::class.java))
         })

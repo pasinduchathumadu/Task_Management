@@ -9,7 +9,8 @@ import android.database.sqlite.SQLiteOpenHelper
 class DbHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, VERSION) {
     //Store These Data
     companion object {
-        private const val VERSION = 1
+
+        private const val VERSION = 1 
         private const val DB_NAME = "todo"
         private const val TABLE_NAME = "todo"
         private const val USER_TABLE = "users"
@@ -19,6 +20,8 @@ class DbHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, VER
         const val ID = "id"
         const val TITLE = "title"
         const val DESCRIPTION = "description"
+        const val DATE = "date"
+        const val PRIORITY = "priority"
         const val STARTED = "started"
         const val FINISHED = "finished"
         const val DATE = "date"
@@ -38,6 +41,8 @@ class DbHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, VER
                 "${Columns.ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "${Columns.TITLE} TEXT," +
                 "${Columns.DESCRIPTION} TEXT," +
+                "${Columns.DATE} TEXT," +
+                "${Columns.PRIORITY} TEXT," +
                 "${Columns.STARTED} TEXT," +
                 "${Columns.FINISHED} TEXT," +
                 "${Columns.DATE} TEXT," +
@@ -68,6 +73,8 @@ class DbHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, VER
         //put keyword to store data to object
         contentValues.put(Columns.TITLE, toDo.title)
         contentValues.put(Columns.DESCRIPTION, toDo.description)
+        contentValues.put(Columns.DATE, toDo.date)
+        contentValues.put(Columns.PRIORITY, toDo.priority)
         contentValues.put(Columns.STARTED, toDo.started)
         contentValues.put(Columns.FINISHED, toDo.finished)
         contentValues.put(Columns.DATE, toDo.date)
@@ -150,6 +157,8 @@ class DbHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, VER
                 val idIndex = cursor.getColumnIndex(Columns.ID)
                 val titleIndex = cursor.getColumnIndex(Columns.TITLE)
                 val descriptionIndex = cursor.getColumnIndex(Columns.DESCRIPTION)
+                val dateIndex = cursor.getColumnIndex(Columns.DATE)
+                val priorityIndex = cursor.getColumnIndex(Columns.PRIORITY)
                 val startIndex = cursor.getColumnIndex(Columns.STARTED)
                 val finishIndex = cursor.getColumnIndex(Columns.FINISHED)
                 val categoryIndex = cursor.getColumnIndex(Columns.CATEGORY)
@@ -287,6 +296,12 @@ class DbHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, VER
                 if(descriptionIndex != -1){
                     toDo.description = cursor.getString(descriptionIndex)
                 }
+                if(dateIndex != -1){
+                    toDo.date = cursor.getString(dateIndex)
+                }
+                if(priorityIndex != -1){
+                    toDo.priority = cursor.getInt(priorityIndex)
+                }
                 if(startIndex!=-1){
                     toDo.started = cursor.getLong(startIndex)
                 }
@@ -362,7 +377,9 @@ class DbHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, VER
 
         val cursor = db.query(
             TABLE_NAME,
+
             arrayOf(Columns.ID, Columns.TITLE, Columns.DESCRIPTION, Columns.STARTED, Columns.FINISHED,Columns.DATE, Columns.TIME,Columns.PRIORITY,Columns.CATEGORY),
+
             "${Columns.ID} = ?",
             arrayOf(id.toString()),
             null,
@@ -379,10 +396,12 @@ class DbHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, VER
                     it.getString(2),
                     it.getLong(3),
                     it.getLong(4),
+
                     it.getString(5),
                     it.getString(6),
                     it.getString(7),
                     it.getString(8)
+
 
                 )
             }
