@@ -161,6 +161,7 @@ class DbHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, VER
                 val priorityIndex = cursor.getColumnIndex(Columns.PRIORITY)
                 val startIndex = cursor.getColumnIndex(Columns.STARTED)
                 val finishIndex = cursor.getColumnIndex(Columns.FINISHED)
+                val priorityIndex = cursor.getColumnIndex(Columns.PRIORITY)
                 val categoryIndex = cursor.getColumnIndex(Columns.CATEGORY)
                 if(descriptionIndex != -1){
                     toDo.description = cursor.getString(descriptionIndex)
@@ -180,6 +181,9 @@ class DbHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, VER
                 }
                 if(categoryIndex != -1){
                     toDo.category = cursor.getString(categoryIndex)
+                }
+                if(priorityIndex != -1){
+                    toDo.priority = cursor.getString(priorityIndex)
                 }
                 //add into the list
                 toDos.add(toDo)
