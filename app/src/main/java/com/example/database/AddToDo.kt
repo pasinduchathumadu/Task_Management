@@ -1,11 +1,17 @@
 package com.example.database
 
+import android.app.AlarmManager
 import android.app.DatePickerDialog
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.app.TimePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Button
@@ -15,6 +21,9 @@ import android.widget.TimePicker
 import java.util.Calendar
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 
 
 class AddToDo : AppCompatActivity() {
@@ -40,6 +49,9 @@ class AddToDo : AppCompatActivity() {
 
     private var priority = ""
     private var category = ""
+
+    private lateinit var alarmManager: AlarmManager
+    private lateinit var alarmIntent: PendingIntent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -135,6 +147,63 @@ class AddToDo : AppCompatActivity() {
             category = "Other"
         })
 
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channelId = "androidknowledge" // The id of the channel.
+            val channelName = "My Notification Channel" // The name of the channel.
+            val importance = NotificationManager.IMPORTANCE_HIGH // Set the importance level.
+
+            val notificationChannel = NotificationChannel(channelId, channelName, importance)
+            val notificationManager = getSystemService(NotificationManager::class.java)
+
+            notificationManager?.createNotificationChannel(notificationChannel)
+        }
+
+
+
+
+
+//        add.setOnClickListener(View.OnClickListener {
+//            val userTitle = title.text?.toString()
+//            val userDesc = desc.text?.toString()
+//            val started = System.currentTimeMillis()
+//            val date = txtDate.text?.toString()
+//            val time = txtTime.text?.toString()
+//
+//            if (userTitle != "" && userDesc != "" && date != "" && time != "" && priority != "") {
+//                val toDo = ToDo(userTitle, userDesc, started, 0, date, time, priority, category)
+//                dbHandler.addToDo(toDo)
+//
+//                // Set alarm for the selected date and time
+//                val calendar = Calendar.getInstance()
+//                val parts = date!!.split("-")
+//                val year = parts[2].toInt()
+//                val month = parts[1].toInt() - 1 // Calendar months are 0-based
+//                val day = parts[0].toInt()
+//                val timeParts = time!!.split(":")
+//                val hour = timeParts[0].toInt()
+//                val minute = timeParts[1].toInt()
+//                calendar.set(year, month, day, hour, minute, 0)
+//
+//                Log.d("AlarmSet", "Year: $year, Month: $month, Day: $day, Hour: $hour, Minute: $minute")
+//
+//
+//                alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+//
+//                val alarmIntent = Intent(this, AlarmReciever::class.java)
+//                // Use .getBroadcast() to specify the mutability flag
+//                val pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+//
+//                alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, pendingIntent)
+//
+//                Toast.makeText(this, "Alarm set successfully!", Toast.LENGTH_SHORT).show()
+//
+//                Log.d("AlarmSet", "Alarm set for $date $time")
+//
+//                startActivity(Intent(context, MainActivity::class.java))
+//            }
+//        })
+
         add.setOnClickListener(View.OnClickListener {
             val userTitle = title.text?.toString()
             val userDesc = desc.text?.toString()
@@ -142,14 +211,83 @@ class AddToDo : AppCompatActivity() {
             val date = txtDate.text?.toString()
             val time = txtTime.text?.toString()
 
-
-
-            if(userTitle!="" && userDesc!="" && date!="" && time!="" && priority!=""){
-                val toDo = ToDo(userTitle, userDesc, started, 0,date,time,priority,category)
+            if (userTitle != "" && userDesc != "" && date != "" && time != "" && priority != "") {
+                val toDo = ToDo(userTitle, userDesc, started, 0, date, time, priority, category)
                 dbHandler.addToDo(toDo)
+
+                // Set alarm for the selected date and time
+                val calendar = Calendar.getInstance()
+                val parts = date!!.split("-")
+                val year = parts[2].toInt()
+                val month = parts[1].toInt() - 1 // Calendar months are 0-based
+                val day = parts[0].toInt()
+                val timeParts = time!!.split(":")
+                val hour = timeParts[0].toInt()
+                val minute = timeParts[1].toInt()
+                calendar.set(year, month, day, hour, minute, 0)
+
+                alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
+                val alarmIntent = Intent(this, AlarmReceiver::class.java)
+                // Pass data to the AlarmReceiver if needed
+                alarmIntent.putExtra("title", userTitle)
+                alarmIntent.putExtra("description", userDesc)
+
+                val pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+
+                alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, pendingIntent)
+
+                Toast.makeText(this, "Alarm set successfully!", Toast.LENGTH_SHORT).show()
+
+                Log.d("AlarmSet", "Alarm set for $date $time")
+
+                // Optionally, you can display a notification to confirm the alarm was set
+                showNotification("Alarm Set", "Alarm set for $date $time")
+
+                // Navigate back to the main activity or perform any other necessary actions
                 startActivity(Intent(context, MainActivity::class.java))
             }
-            startActivity(Intent(context, MainActivity::class.java))
         })
+
+
     }
+
+
+    private fun showNotification(title: String, content: String) {
+        val channelId = "androidknowledge"
+        val notificationManager =
+            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                channelId,
+                "My Notification Channel",
+                NotificationManager.IMPORTANCE_HIGH
+            )
+            notificationManager.createNotificationChannel(channel)
+        }
+
+        val intent = Intent(this, NotificationActivity::class.java)
+        val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+
+        val builder = NotificationCompat.Builder(this, channelId)
+            .setSmallIcon(R.drawable.baseline_notifications_active_24)
+            .setContentTitle(title)
+            .setContentText(content)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true)
+
+        notificationManager.notify(123, builder.build())
+
+        // Log message to check if this code block is reached
+        Log.d("showNotification", "Notification displayed: $title - $content")
+    }
+
 }
+
+
+
+
+
+

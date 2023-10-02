@@ -126,6 +126,7 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
 //
 //    private fun filterList(query: String?) {
 //
